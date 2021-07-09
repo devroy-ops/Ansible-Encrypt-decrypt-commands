@@ -1,0 +1,46 @@
+**********************Start***********
+
+
+Note:- Vault commands
+
+Step-1 ansible-vault create vault.yml
+
+Step-2 give password like- ansible
+
+--- # condition playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+          - name: install apache server
+            command: apt-get -y install apache2
+            when: ansible_os_family == "Debian"
+          - name: install apache server
+            command: yum -y install httpd
+            when: ansible_os_family == "RedHat"
+
+
+Step-3  ansible-vault edit vault.yml (open playbook command after lock)
+
+
+Step-4 ansible-vault rekey vault.yml ( Password change command)
+
+step-5 old password
+
+step-6 new password
+
+Note:- Existing playbook encrypting command
+
+
+Step-1 ansible-vault encrypt target.yml
+
+Step-2 Password
+
+Note:- Existing playbook decrypt command
+
+Step-1 ansible-vault decrypt target.yml
+
+Step-2 Password
+
+***************************END***************************
